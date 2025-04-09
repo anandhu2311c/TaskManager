@@ -1,0 +1,39 @@
+@model TaskManager.Models.TaskItem
+
+@{
+    ViewData["Title"] = "Task Details";
+}
+
+<h1>Task Details</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Title)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.Title)</dd>
+
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Description)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.Description)</dd>
+
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.DueDate)</dt>
+        <dd class="col-sm-9">
+            @if (Model.DueDate.HasValue)
+            {
+                @Model.DueDate.Value.ToString("MMM dd, yyyy")
+            }
+        </dd>
+
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Priority)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.Priority)</dd>
+
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.IsCompleted)</dt>
+        <dd class="col-sm-9">@(Model.IsCompleted ? "Yes" : "No")</dd>
+
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.CreatedDate)</dt>
+        <dd class="col-sm-9">@Model.CreatedDate.ToString("MMM dd, yyyy hh:mm tt")</dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
